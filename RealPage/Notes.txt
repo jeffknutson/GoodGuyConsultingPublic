@@ -196,8 +196,10 @@ get-hotfix | where-object {[datetime]::parse($_.InstalledOn).year -eq 2017}
 
 then I got curious at lunch about the InstalledOn ScriptProperty, which resulted in this:
 
-get-hotfix | select -first 1 | gm -MemberType ScriptProperty | 
+This script below, gets the code for the InstalledOn ScriptProperty
+get-hotfix | select -first 1 | get-member -MemberType ScriptProperty | 
              select -first 1 | select -expandproperty definition
+
 
 
 
@@ -207,6 +209,24 @@ This is how to set the window title in PowerShell.  It can be useful if
 you have multiple PowerShell command prompts open.
 
 $host.UI.RawUI.WindowTitle = "tasks"
+
+
+how to call a command 10 times
+PS E:\> 1..10 | foreach { Write-host "Hello # $_" }
+Hello # 1
+Hello # 2
+Hello # 3
+Hello # 4
+Hello # 5
+Hello # 6
+Hello # 7
+Hello # 8
+Hello # 9
+Hello # 10
+PS E:\>
+
+
+
 
 
 Lab 12 - "A Practical Interlude"
@@ -240,3 +260,30 @@ Lab 13 - Powershell Remoting
 #3 - Invoke-Command help example #5 shows how to call multiple computers
 
 #4 - Invoke-Command help example #11 shows how to get computers from a local file
+
+
+Module 14 - WMI
+---------------
+
+One way to save off the WMI classes to make searching for the names easier:
+Get-WmiObject -List | Out-File .\wmiClasses.txt
+notepad .\wmiClasses.txt
+
+
+
+#3 hint - Win32_QuickFixEngineering
+
+More Niggles
+------------
+- open windows explorer directly from powershell command prompt to the current folder
+invoke-item .   
+  -or-
+ii .
+
+
+
+Review 1-14 labs 
+
+
+End of Day 2 -- Tomorrow we start on module 15, Background tasks/jobs!
+
