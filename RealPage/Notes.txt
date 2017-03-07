@@ -1,4 +1,7 @@
-﻿PowerShell
+﻿https://github.com/jeffknutson/GoodGuyConsultingPublic/blob/master/RealPage/Notes.txt
+
+
+PowerShell
 ==========
 Jeff Knutson
 jeff@toptal.com
@@ -100,3 +103,108 @@ $object | Add-Member –MemberType NoteProperty –Name OSBuild –Value $os.Bui
 $object | Add-Member –MemberType NoteProperty –Name OSVersion –Value $os.Version
 $object | Add-Member –MemberType NoteProperty –Name BIOSSerial –Value $bios.SerialNumber
 Write-Output $object
+
+Posh Parlor Tricks
+------------------
+Powershell can do math!
+1GB / 1MB
+8gb / .29MB  e.g. how many .29Mb files fit on an 8GB thumbdrive?
+
+
+Powershell Day 2
+================
+Welcome back!
+
+Our Notes file -- http://tinyurl.com/RealPosh
+
+https://github.com/jeffknutson/GoodGuyConsultingPublic/blob/master/RealPage/Notes.txt
+
+http://www.powershell.org
+
+PowerShell Browser - http://www.PowerShellGallery.com (Thanks Sravan!)
+
+
+Module 9 
+--------
+
+Using the ExpandProperty parameter of Selet-Object to get the value from a POSH objet
+get-process | select -ExpandProperty ProcessName
+
+Sending stuff to the clipboard is easy - just pipe it to Clip
+e.g. get-process | select -ExpandProperty ProcessName | clip
+
+
+Module 10 Lab
+-------------
+Book - starts on page 123
+
+#1 hint - get-process | select -first 1 | get-member
+          
+          #to just get the properties of a process object (properties contain data)
+          get-process | select -first 1 | Get-Member -MemberType Property 
+
+          checkout the format-table cmdlet too for how to format
+           
+#2 hint - format-table works like select-object where you can create dynamic output columns
+          e.g.   format-table @{l='myCustomColumnName';e={'myCustomColumnVlue'}
+
+          get-process | format-table Id, Name, @{l='CPU Percentage';e={$_.CPU * 100}}
+
+#3 hint - get-help *eventlog*
+          also use, that same syntax from #2 to create custom expressions
+          e.g. format-table @{Label='label',Expression={expression}}
+
+          p.132 in the book has a small section explaining creating expressions -- 
+          "Unlike Select-object, whose hash tables can accept only a Name and Expression key 
+          (althought it will also accept N, L and Label for Name and E for Expression"
+
+
+
+#4 hint - the format-table cmdlet has a parameter to help you do grouping
+
+
+Lab 11 - Filtering
+------------------
+#1 - hint -- Import-Module is something we talked about later on day 1.
+          -- it looks like get-netadapter has a built-in filtering parameter available
+             so where-object would not necessairly be the first, best choice
+
+#2 - hint -- same as #1 using import-module and builtin filtering
+
+#4 - the answer key says this cannot be done, but it seems like there _is_ a StartType property
+     available:
+
+     get-service | select -first 1 | get-member -MemberType property
+
+     you will probably need ot use the logical operator -and inside of your where-object
+
+     Richard did get this to work using where-object  :) - thank you!
+     Jason pointed out this is not possible just using the builtin filtering of get-service, which
+     is likely what the question was asking.  Thanks!
+
+#5 - where-object is going to be useful on this one
+
+other stuff from this lab:
+- We started talking about finding hotfixes installed this year
+
+# the InstallDate/InstalledOn are strings, which we see here:
+get-hotfix | select -first 1 | get-memember
+
+
+get-hotfix | where-object {[datetime]::parse($_.InstalledOn).year -eq 2017}
+
+
+then I got curious at lunch about the InstalledOn ScriptProperty, which resulted in this:
+
+get-hotfix | select -first 1 | gm -MemberType ScriptProperty | select -first 1 | select -expandproperty definition
+
+
+
+Niggles
+-------
+$host.UI.RawUI.WindowTitle = "tasks"
+
+
+Lab 12 - "A Practical Interlude"
+- 
+
