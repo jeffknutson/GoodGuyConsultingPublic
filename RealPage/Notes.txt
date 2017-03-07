@@ -188,7 +188,7 @@ other stuff from this lab:
 - We started talking about finding hotfixes installed this year
 
 # the InstallDate/InstalledOn are strings, which we see here:
-get-hotfix | select -first 1 | get-memember
+get-hotfix | select -first 1 | get-member
 
 
 get-hotfix | where-object {[datetime]::parse($_.InstalledOn).year -eq 2017}
@@ -196,15 +196,47 @@ get-hotfix | where-object {[datetime]::parse($_.InstalledOn).year -eq 2017}
 
 then I got curious at lunch about the InstalledOn ScriptProperty, which resulted in this:
 
-get-hotfix | select -first 1 | gm -MemberType ScriptProperty | select -first 1 | select -expandproperty definition
+get-hotfix | select -first 1 | gm -MemberType ScriptProperty | 
+             select -first 1 | select -expandproperty definition
 
 
 
 Niggles
 -------
+This is how to set the window title in PowerShell.  It can be useful if
+you have multiple PowerShell command prompts open.
+
 $host.UI.RawUI.WindowTitle = "tasks"
 
 
 Lab 12 - "A Practical Interlude"
-- 
+- SMBShare module 
+- commands on SMBShare 
+- dump the share to console
 
+- to get your local computername
+$env:COMPUTERNAME
+
+ "$env:computername\Administrators"
+
+
+PowerShell on other platforms (googleable of course)
+https://www.github.com/PowerShell/PowerShell
+- Win *
+- Ubuntu 14.04, 16.04
+- CentOS 7
+- MacOS 10.11
+- Docker
+- others....
+
+Lab 13 - Powershell Remoting
+- uses WinRM
+- to enable a server, use the Enable-PSRemoting commandlet
+- Enter-PSSession -ComputerName <todo your remote computer name>
+- It is not GUI, so running GUI commands will not show anything
+- type Exit to leave the remote session
+- The Invoke-Command cmdlet has a lot of examples of how to call remote servers, passing it scripts to run
+
+#3 - Invoke-Command help example #5 shows how to call multiple computers
+
+#4 - Invoke-Command help example #11 shows how to get computers from a local file
