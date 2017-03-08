@@ -8,6 +8,9 @@ jeff@toptal.com
 jeff@goodguyconsulting.com
 
 
+Learn Windows PowerShell in a Month of Lunches - https://www.youtube.com/playlist?list=PL6D474E721138865A
+
+
 How to change your error background colors in the PowerShell console: http://tinyurl.com/zh3hc66
 
 Lab3
@@ -286,4 +289,61 @@ Review 1-14 labs
 
 
 End of Day 2 -- Tomorrow we start on module 15, Background tasks/jobs!
+
+
+Day 3!
+======
+Write-Host "Welcome back - today is " (Get-Date).DayOfWeek
+
+Review
+------
+ - Chapter 28 has PowerShell Cheatsheet (p.328)
+ -  http://www.PowerShellGallery.com
+
+ Lab 15
+ ------
+ 
+ Main Commands are:
+   Start-Job
+   Get-Job
+   Receive-Job
+   
+#2 hint -- invoke-command cmdlet has an -AsJob argument you can use too
+
+#3 hint -- New-JobTrigger is a cmdlet you can use to schedule a job
+        -- Export-CliXml is a cmdlet you can use to write xml to a file 
+        -- Register-ScheduledJob is a cmdlet which uses the trigger created with New-JobTrigger
+        -- Get-Command -Noun *ScheduledJob* will help you find out more about 
+           what scheduled jobs are available
+
+#4 hint -- Receive-job has an argument you can pass to keep the results in the queue
+
+
+Lab 16
+======
+#1 - get-member cmdlet has an argument to help you find what methods ar available 
+
+#3 - WMI class = Win32_Process  
+
+
+Variables
+=========
+[xml]  -- e.g. $x = [xml](get-content .\myfile.xml)
+
+[adsi]
+$s = [AdsiSearcher]'(samaccountname=putUserAccountNameHere)'
+$t = $s.findOne()
+$t.properties.memberof
+
+[datetime] -- e.g. $birthday = [datetime]"3/5/2016 1:42pm"
+
+[timespan] -- e.g. $hourlyInterval = [timespan]"01:00:00"
+                   $oneHourThreeMinutesAndFourtyTwoSeconds = [timespan]"01:03:42"
+
+the variable:/ ps drive (get-psdrive) acts just like a file system provider, or the registry providers
+
+POSH variables are CaSeInSeNsItIvE, so $fred is the same as $Fred is the same as $FRED
+
+all POSH variables start with $
+
 
