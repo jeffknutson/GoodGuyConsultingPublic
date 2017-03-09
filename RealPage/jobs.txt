@@ -1,0 +1,17 @@
+﻿Here are some of the cmdlets we used while discussing background jobs
+
+Start-Job -ScriptBlock { 
+    Start-Sleep -Seconds 20; #simulates a long running process
+    Get-EventLog -LogName Application -ComputerName localhost -Newest 10;
+}
+
+Get-Job   # you can use the ID provided in the Start-Job response 
+
+#let's pretend the Job id is 1
+
+Receive-Job -Id 1
+
+- or -
+
+Receive-Job -Id 1 -Keep  #this will keep the data in the result so you can retrieve it in Receive-job another time
+
