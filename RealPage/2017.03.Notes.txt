@@ -1,0 +1,102 @@
+﻿PowerShell
+==========
+Jeff Knutson
+jeff@toptal.com
+jeff@goodguyconsulting.com
+
+
+How to change your error background colors in the PowerShell console: http://tinyurl.com/zh3hc66
+
+Lab3
+----
+Get-Help and Get-Command are your friends
+
+14.  A little help to filter the aliases down to a resonable size:
+     Get-Alias -Definition "*process*"
+
+Lab4
+----
+#3 hint -- Get-Command has "Noun" and "Verb" params...
+           there is a different parameter you can use
+
+Lab5
+----
+#1 hint Set-ItemProperty
+
+#4 hint -- recursive
+
+
+Lab6
+----
+#1 Compare-Object is the cmdlet we were using
+
+
+Review 1-6  -- 145pm-245pm target
+----------
+
+#3 hint - use the Sort-Object cmdlet (get-help *sort*)
+
+#6 hint - the > is the same as Out-File
+   e.g. dir > files.txt  
+           -- or --
+        dir | Out-File .\files.txt
+
+#7 We have not seen the Format-Custom cmdlet yet, so don't stress about that one
+
+#9 hint - do a Get-Help ConvertTo-HTML to find a parameter to help satisify the 
+          'Have the phrase "Installed services" displayed'
+
+#16 hint - Get-Command -Verb *format* to help find the proper cmdlet to do output the "User Shell Folders"
+
+
+Lab 7
+-----
+hint get-help *troubleshooting*
+
+
+Example of loading the SQL Server Module
+----------------------------------------
+Import-Module “sqlps” -DisableNameChecking
+ls
+cd .\SQL\
+ls
+cd Morello      (NOTE: The name of my machine is Morello; enter your own machine name here)
+ls
+cd default
+ls
+cd Databases
+ls
+cd Tempo        (NOTE: I have a table named Tempo, but you could do this to your own tables here)
+dir
+cd Tables
+dir
+cd Roles
+ls
+Invoke-Sqlcmd "Select * from users"
+Invoke-Sqlcmd "Select * from users" |format-table
+
+
+Lab 8
+-----
+Get-Member 
+
+Properties == Data
+Methods == Actions
+
+# this will get a list of all methods (i.e. Actions) on the System.Diagnostics.Process object
+get-process | select -first 1 | get-member -MemberType methods
+
+# this will get a list of all properties (i.e. Data) on the System.Diagnostics.Process object
+get-process | select -first 1 | get-member -MemberType Properties
+
+
+#4 hint - pipe your date into select-object 
+        - ignore the rest of the business about "a table like this......"
+
+
+
+$object = New-Object –TypeName PSObject
+$object | Add-Member –MemberType NoteProperty –Name OSBuild –Value $os.BuildNumber
+$object | Add-Member –MemberType NoteProperty –Name OSVersion –Value $os.Version
+$object | Add-Member –MemberType NoteProperty –Name BIOSSerial –Value $bios.SerialNumber
+Write-Output $object
