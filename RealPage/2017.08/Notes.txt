@@ -1,0 +1,106 @@
+﻿PowerShell
+==========
+Jeff Knutson
+jeff@toptal.com
+jeff@goodguyconsulting.com
+
+TODO - jk - github
+
+
+DAY 1
+=====
+approved verb list  - https://msdn.microsoft.com/en-us/library/ms714428(v=vs.85).aspx
+
+Other places to get help
+------------------------
+- https://ss64.com/ps
+- Hey Scripting Guy! - https://blogs.technet.microsoft.com/heyscriptingguy/
+
+
+General stuff
+-------------
+- How to change your error background colors in the PowerShell console: http://tinyurl.com/zh3hc66
+- Invoke-Item .   #this opens windows explorer in the current window -- alias is: ii .
+
+Module 3
+--------
+- Powershell is open source - https://github.com/PowerShell/PowerShell
+
+Lab3
+----
+Get-Help and Get-Command are your friends
+
+950am - Start  lab 3
+1020am - Target end 1020am
+1045am - break
+1055 - start module 4
+
+
+get-credential - this pops the windows credential dialog
+
+
+Lab4
+----
+1115am - start lab 4
+1135am - target end lab 4
+
+#3 hint - Get-Command has a "Noun" and a "Verb" parameter -- there is another parameter here to help....
+
+#5 hint - Powershell uses the verb "New" 
+
+
+
+
+14.  A little help to filter the aliases down to a resonable size:
+     Get-Alias -Definition "*process*"
+
+
+1240pm - start lab 5
+
+get-psprovider
+set-itemproperty 
+
+1pm - target end lab 5
+	
+	
+315pm - start lab 6
+
+Lab 6
+-----
+#1 
+  - use Compare-Object cmdlet to do the file comparison
+  - you can echo a string using out-file to create the files:  
+    e.g.  "i am not looking into the sun" | out-file .\file1.txt
+	      "i am looking into the sun" | out-file .\file2.txt
+
+#2 is kind of a trick question...
+
+#6 - do a get-help on export-csv; check out the parameters
+#7 - same as #6		  
+
+
+
+4pm - break and target end of lab 6
+	 
+	 
+	 
+	 
+DAY 2
+=====
+Welcome back - Powershell All The Things!
+
+- https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/21/understanding-the-six-powershell-profiles/
+
+
+Properties == Data
+Methods == Actions
+
+1100am - start lab 8
+
+Use Get-Help, Get-Command, Get-Member
+
+
+1130am - target end lab 8
+
+DAY 3
+=====
