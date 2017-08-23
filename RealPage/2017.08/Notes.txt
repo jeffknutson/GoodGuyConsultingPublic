@@ -4,7 +4,9 @@ Jeff Knutson
 jeff@toptal.com
 jeff@goodguyconsulting.com
 
-TODO - jk - github
+Link to notes, labs, slides
+http://tinyurl.com/RealPoshAug2017
+
 
 
 DAY 1
@@ -15,7 +17,8 @@ Other places to get help
 ------------------------
 - https://ss64.com/ps
 - Hey Scripting Guy! - https://blogs.technet.microsoft.com/heyscriptingguy/
-
+- www.powershell.org
+- Don Jones Learn Powershell in 30 Days of lunches Youtube: https://www.youtube.com/playlist?list=PL6D474E721138865A
 
 General stuff
 -------------
@@ -102,5 +105,37 @@ Use Get-Help, Get-Command, Get-Member
 
 1130am - target end lab 8
 
+lunch
+
+12:50pm - module 9
+1:30pm - start module 9 lab
+
+#1 and #2 use the Get-ADComputer cmdlet 
+- use get-member to determine the output of the first cmdlet
+- use help  -full  to determine the parameters that accept input for the second cmdlet
+
+2:00pm - target end of module 9 lab
+
+
+- You can find the default powershell format files here: 
+C:\Windows\System32\WindowsPowerShell\v1.0\*.ps1xml
+
+
+430pm - lab 11
+
+
 DAY 3
 =====
+
+webclient
+try-catch 
+test-path
+invoke-webrequest
+
+
+
+---ADSI---
+
+Powershell has a lot of support for ADSI...here's a way to search for an AD user by account name:
+$s = [AdsiSearcher]'(samaccountname=TODOUserIdHere)'
+$t = $s.findOne()

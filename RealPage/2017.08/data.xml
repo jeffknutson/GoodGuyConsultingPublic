@@ -1,0 +1,4 @@
+<root>
+  <foo>1</foo>
+  <bar x="hi"/>
+</root>
