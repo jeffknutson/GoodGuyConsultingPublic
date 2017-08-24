@@ -1,3 +1,5 @@
+# this script shows how to download a file using the .NET System.Net.WebClient
+
 try
 {
    $wc = new-object System.Net.WebClient

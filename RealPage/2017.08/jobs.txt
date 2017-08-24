@@ -15,3 +15,7 @@ Receive-Job -Id 1
 
 Receive-Job -Id 1 -Keep  #this will keep the data in the result so you can retrieve it in Receive-job another time
 
+
+Stop-Job -Id 1  # this stops a currently running job
+
+Remove-Job -Id 1  # this removes a job  
