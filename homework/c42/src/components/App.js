@@ -25,8 +25,12 @@ class App extends React.Component {
     return (
       <div>
         <header className="row">
-          <NavLink to="/">Home</NavLink>
-          TODO HEADER GOES HERE
+          <nav>
+            <NavLink to="/">Home</NavLink>
+          </nav>
+          <div>
+            TODO HEADER GOES HERE
+          </div>
         </header>
         <main className="row">
           <div className="col-md-3">
@@ -41,6 +45,7 @@ class App extends React.Component {
           </div>
         </main>
         <footer>
+          {/* todo put footer here if needed */}
         </footer>
       </div>
     );
