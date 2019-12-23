@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script type="text/javascript" language="javascript">
+			setInterval(setLocation, (1000 * 60 * 3) + Math.floor(Math.random()*11));
+
+			function setLocation() {
+				var frame = document.getElementById("theFrame");
+				frame.src="http://www.singleparentmeet.com/community/index.cfm"
+
+				document.getElementById("lastRefresh").innerHTML = new Date().toString();
+			}	
+		</script>
+	</head>
+	<body>
+		<div id='lastRefresh'></div>
+		<iframe id='theFrame' width='1200' height='800'></iframe>
+	</body>
+		<script type="text/javascript" language="javascript">
+			setLocation();
+		</script>
+</html>

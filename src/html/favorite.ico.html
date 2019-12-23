@@ -1,0 +1,20 @@
+<HEAD>
+  <LINK REL="SHORTCUT ICON" HREF="http://www.mydomain.com/myicon.ico">
+  <TITLE>My Title</TITLE>
+</HEAD>
+
+
+Add the Web Page to the User's Favorites Menu
+The only way a shortcut icon appears on a user's Favorites menu and Address bar is if the user chooses to add your page as a favorite. You can add a button or link on your page that prompts the user to add your page. Use the following code to experiment with this feature.
+
+<SCRIPT>
+<!--
+if ((navigator.appVersion.indexOf("MSIE") > 0)
+  && (parseInt(navigator.appVersion) >= 4)) {
+    var sText = "<U><SPAN STYLE='color:blue;cursor:hand;'";
+    sText += "onclick='window.external.AddFavorite(location.href,";
+    sText += "document.title);'>Add this page to your favorites</SPAN></U>";
+    document.write(sText);
+}
+//-->
+</SCRIPT>
