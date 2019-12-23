@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<component>
+
+<?component error="true" debug="false"?>
+
+<registration
+	description="AuthorsTable"
+	progid="AuthorsTable.WSC"
+	version="1.00"
+	classid="{97137467-5b88-47a5-9158-f82cb181c14d}" />
+
+<public>
+	<property name="Foo">
+		<get/>
+		<put/>
+	</property>
+
+	<method Name="GetBody">
+	</method>
+
+</public>
+
+<implements type="ASP" id="ASP"/>
+
+
+<reference guid="{00000300-0000-0010-8000-00AA006D2EA4}"/><!--ADo 2.6 Type Library-->
+
+<script language="VBScript">
+<![CDATA[
+Option Explicit
+
+Public Function GetBody()
+
+   'x = 19
+   'Response.Write "foobar!!!!"
+   Dim strHTML
+   Dim pConn, pRS
+   Set pConn = CreateObject("ADODB.Connection")
+   Set pRS =   CreateObject("ADODB.Recordset")
+
+   Dim strConnectString
+
+   strConnectString = "Provider=SQLOLEDB;Initial Catalog=pubs;User Id=sa;Password=;server=127.0.0.1"
+   'strConnectString = "Server=127.0.0.1;database=pubs;driver=sql server;uid=sa;pwd=;"
+
+   pConn.Open strConnectString
+   pRS.Open "SELECT * FROM AUTHORS", pConn
+
+   strHTML = strHTML & "<TABLE>"
+      
+   Do While Not pRS.EOF
+      strHTML = strHTML & "<TR>"
+         strHTML = strHTML & "<TD>" & pRS("au_id") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("au_lname") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("au_fname") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("phone") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("address") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("city") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("state") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("zip") & "</TD>"
+         strHTML = strHTML & "<TD>" & pRS("contract") & "</TD>"
+      strHTML = strHTML & "</TR>"	      
+      pRS.MoveNext()
+   Loop
+
+   strHTML = strHTML & "</TABLE>"
+   GetBody = strHTML
+End Function
+
+dim Foo
+
+function get_Foo()
+	get_Foo = Foo
+end function
+
+function put_Foo(newValue)
+	Foo = newValue
+end function
+
+]]>
+</script>
+
+</component>
