@@ -1,0 +1,1 @@
+ 1..255 | %{Test-Connection 192.168.1.$_ -Count 1}
